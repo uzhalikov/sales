@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h2>{{ title }}</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Опубликовать</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,7 +1,44 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
-{% block title %}Домашняя страница{% endblock %}
+{% block head %}
+<link type="text/css" rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+
 
 {% block main %}
-<p>Тут пока ничего нет, но скоро будет новый Avito</p>
+    <div class="container">
+        <h2>{{ title }}</h2>
+        <div class="announcements">
+            {% for announcement in announcements %}
+                <div class="announcement">
+                    <div class="announcement__header">
+                        <div class="announcement__title">
+                            {{ announcement.title }}
+                        </div>
+                        <div class="announcement__price">
+                            {{ announcement.price }}<span> руб.</span>
+                        </div>
+                    </div>
+                    <div class="announcement__description">
+                        {{ announcement.description }}
+                    </div>
+                    <div class="announcement__footer">
+                        <div class="announcement__username">
+                            {{ announcement.author.first_name }}
+                        </div>
+                        <div class="announcement__phonenumber">
+                            {{ announcement.author.phone_number }}
+                        </div>
+                    </div>
+                    <div class="announcement__time">
+                        {{ announcement.created|date:'d.m.Y - H:i' }}
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
